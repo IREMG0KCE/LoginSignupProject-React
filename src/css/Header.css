@@ -1,0 +1,22 @@
+.header {
+ position: fixed;   /* sayfanın üstüne sabitler */
+  top: 0;            /* üstten 0 px */
+  left: 0;
+  width: 100%;       /* ekranın tamamı */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  color: white;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
