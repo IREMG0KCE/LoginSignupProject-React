@@ -16,6 +16,7 @@ function App() {
    <div> <Header />    <div >
         {/* Sayfa İçerikleri */}
         <div style={{ padding: "20px" }}>
+          
           <Routes>
             <Route path="/anasayfa" element={<Home />} />
             <Route path="/hakkimizda" element={<About />} />
