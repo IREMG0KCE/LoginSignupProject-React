@@ -20,7 +20,8 @@ const resources = {
     "Don't have an account?":"Henüz bir hesabınız yok mu?",
     "This is our about us page.":"Burası bizim hakkımızda sayfamızdır.",
     "We are engineers in development.":"Gelişme aşamasında olan mühendisleriz.",
-    "I'm learning React.":"React öğreniyorum"
+    "I'm learning React.":"React öğreniyorum",
+    "NotFoundPage":"Sayfa Bulunamadı"
   }
 },
 en: {
@@ -41,7 +42,8 @@ en: {
     "Don't have an account?":"Don't have an account?",
     "This is our about us page.": "This is our about us page.",
     "We are engineers in development.":"We are engineers in development.",
-    "I'm learning React.":"I'm learning React."
+    "I'm learning React.":"I'm learning React.",
+    "NotFoundPage":"NotFoundPage"
   }
 }
 
