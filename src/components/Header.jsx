@@ -28,6 +28,7 @@ function Header() {
       <option  className=" text-black bg-white " value="en">EN</option>
     </select>
   </nav>
+  
 </div>
 
   );

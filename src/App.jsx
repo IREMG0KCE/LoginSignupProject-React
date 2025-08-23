@@ -13,9 +13,10 @@ function App() {
  
   return (
     //html kodları return içine yazılır
-   <div> <Header />    <div >
+   <div > <Header />    <div >
+<div className="w-full min-h-screen bg-[url('/images/background.jpg')] bg-cover bg-center">
         {/* Sayfa İçerikleri */}
-        <div style={{ padding: "20px" }}>
+        <div >
           
           <Routes>
             <Route path="/anasayfa" element={<Home />} />
@@ -25,6 +26,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
+        </div>
         </div>
       </div></div>
     
