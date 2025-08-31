@@ -1,40 +1,45 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Dashboard from '../userLayouts/dashboard'
+
+import { toast } from 'react-toastify';
 
 function Login() {
   const { t } = useTranslation();
-  const navigate = useNavigate(); // login sonrası yönlendirme için
+ const navigate = useNavigate(); 
 
   // Form state
   const [username, setUsername] = useState(''); // eğer backend email istiyorsa username yerine email kullanabilirsin
   const [password, setPassword] = useState('');
 
   // Submit handler
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await fetch('http://localhost:5000/user/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: username, password }) // backend email bekliyor
-      });
+  try {
+    const res = await fetch('http://localhost:5000/user/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ identifier: username, password }) // <-- değişiklik burada
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (res.status === 200) {
-        localStorage.setItem('token', data.token); // Token'ı sakla
-        alert('Giriş başarılı!');
-        navigate('/dashboard'); // opsiyonel: giriş sonrası yönlendirme
-      } else {
-        alert('Giriş başarısız: ' + data.error);
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Sunucu hatası!');
+    if (res.status === 200) {
+      localStorage.setItem('token', data.token);
+      toast.success("Giriş başarılı!");
+       navigate('/userLayouts/dashboard');
+      
+    } else {
+      toast.error("Hatalı giriş!");
     }
-  };
+  } catch (err) {
+    console.error(err);
+     toast.error("Sunucu hatası!");
+  }
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-transparent">
