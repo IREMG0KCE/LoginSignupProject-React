@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faHome, faUser, faInfoCircle, faCog, faBell, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
-function Dashboard() {
-  const [open, setOpen] = useState(true);
+const Dashboard = () => {
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(true); // Sidebar aç/kapa
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -13,66 +15,90 @@ function Dashboard() {
   };
 
   const linkCls = ({ isActive }) =>
-    `block px-3 py-2 rounded-xl transition ${
-      isActive ? "bg-white/10 font-semibold" : "hover:bg-white/5"
+    `flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-700 transition ${
+      isActive ? "bg-gray-700 font-semibold" : ""
     }`;
 
   return (
-    <div className="min-h-screen w-full flex bg-gray-50">
-      {/* SOL SİDEBAR */}
+    <div className="flex min-h-screen">
+      {/* Sol sidebar */}
       <aside
-        className={`hidden md:flex flex-col bg-gray-900 text-white transition-all duration-200 ${
-          open ? "w-64" : "w-16"
+        className={`bg-gray-900 text-white flex flex-col p-4 transition-all duration-300 ${
+          sidebarOpen ? "w-60" : "w-16"
         }`}
       >
-        <div className="h-14 flex items-center justify-between px-3 border-b border-white/10">
-          <span className={`text-sm font-semibold ${open ? "block" : "hidden"}`}>
-            Panel
-          </span>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className={`text-2xl font-bold ${sidebarOpen ? "block" : "hidden"}`}>
+            Menü
+          </h2>
           <button
-            onClick={() => setOpen(!open)}
-            className="text-xs px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="text-white text-xl font-bold"
           >
-            {open ? "‹" : "›"}
+            <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
-
-        <nav className="p-3 space-y-1">
-          <NavLink to="/dashboard" className={linkCls}>Dashboard</NavLink>
-          <NavLink to="/profil" className={linkCls}>Profil</NavLink>
-          <NavLink to="/hakkimda" className={linkCls}>Hakkımda</NavLink>
-          <NavLink to="/ayarlar" className={linkCls}>Ayarlar</NavLink>
-        </nav>
+        <NavLink to="/userLayouts/dashboard" className={linkCls}>
+          <FontAwesomeIcon icon={faHome} />
+          {sidebarOpen && "Dashboard"}
+        </NavLink>
+        <NavLink to="/profil" className={linkCls}>
+          <FontAwesomeIcon icon={faUser} />
+          {sidebarOpen && "Profil"}
+        </NavLink>
+        <NavLink to="/hakkimda" className={linkCls}>
+          <FontAwesomeIcon icon={faInfoCircle} />
+          {sidebarOpen && "Hakkımda"}
+        </NavLink>
+        <NavLink to="/ayarlar" className={linkCls}>
+          <FontAwesomeIcon icon={faCog} />
+          {sidebarOpen && "Ayarlar"}
+        </NavLink>
       </aside>
 
-      {/* SAĞ İÇERİK */}
-      <div className="flex-1 flex flex-col">
-        <header className="h-14 sticky top-0 bg-white border-b border-gray-200 flex items-center justify-between px-4">
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden text-sm px-2 py-1 rounded-lg border"
-          >
-            Menü
-          </button>
+      {/* Sağ içerik */}
+      <div className="flex-1 flex flex-col bg-gray-50">
+        {/* Üst yönetim/profil bar */}
+        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+          <div className="flex items-center gap-4">
+            <input
+              type="text"
+              placeholder="Ara..."
+              className="px-3 py-1 rounded border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            />
+          </div>
 
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-600">Hoş geldin 👋</span>
-            <button
-              onClick={handleLogout}
-              className="text-sm px-3 py-1 rounded-lg bg-gray-900 text-white hover:bg-gray-800"
-            >
-              Çıkış
+          <div className="flex items-center gap-4">
+            <button className="relative text-gray-600 hover:text-gray-800">
+              <FontAwesomeIcon icon={faBell} />
+              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
+
+            <div className="relative flex items-center gap-2">
+              <img
+                src="/public/images/avatar.png"
+                alt="avatar"
+                className="w-8 h-8 rounded-full cursor-pointer"
+              />
+              {sidebarOpen && <span className="text-gray-600">Hoş geldin, Kullanıcı!</span>}
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} />
+                Çıkış
+              </button>
+            </div>
           </div>
         </header>
 
-        {/* İçerik burada */}
-        <main className="p-4">
+        {/* Ana içerik */}
+        <main className="p-6 flex-1">
           <Outlet />
         </main>
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;
