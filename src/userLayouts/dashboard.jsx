@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faHome, faUser, faInfoCircle, faCog, faBell, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faHome,
+  faUser,
+  faInfoCircle,
+  faCog,
+  faBell,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(true); // Sidebar aç/kapa
+  const [notifOpen, setNotifOpen] = useState(false); // Bildirim dropdown
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -29,7 +38,11 @@ const Dashboard = () => {
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className={`text-2xl font-bold ${sidebarOpen ? "block" : "hidden"}`}>
-            Menü
+             <img
+                src="/images/avatar.png"
+                alt="avatar"
+                className="w-8 h-8 rounded-full cursor-pointer"
+              />
           </h2>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -59,7 +72,7 @@ const Dashboard = () => {
       {/* Sağ içerik */}
       <div className="flex-1 flex flex-col bg-gray-50">
         {/* Üst yönetim/profil bar */}
-        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 relative">
           <div className="flex items-center gap-4">
             <input
               type="text"
@@ -69,14 +82,34 @@ const Dashboard = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="relative text-gray-600 hover:text-gray-800">
-              <FontAwesomeIcon icon={faBell} />
-              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
+            {/* Bildirim Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setNotifOpen(!notifOpen)}
+                className="relative text-gray-600 hover:text-gray-800"
+              >
+                <FontAwesomeIcon icon={faBell} size="lg" />
+                <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+              </button>
 
+              {notifOpen && (
+                <div className="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg border border-gray-200 z-50">
+                  <ul className="divide-y divide-gray-200">
+                    <li className="p-3 hover:bg-gray-100 cursor-pointer">
+                      Yeni mesajınız var 📩
+                    </li>
+                  </ul>
+                  <div className="text-center p-2 text-sm text-blue-600 cursor-pointer hover:bg-gray-100 rounded-b-lg">
+                    Tümünü Gör
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Kullanıcı / Logout */}
             <div className="relative flex items-center gap-2">
               <img
-                src="/public/images/avatar.png"
+                src="/images/avatar.png"
                 alt="avatar"
                 className="w-8 h-8 rounded-full cursor-pointer"
               />
