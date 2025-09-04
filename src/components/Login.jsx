@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Dashboard from '../userLayouts/dashboard'
+import Dashboard from '../adminLayouts/dashboard.jsx'
 
 import { toast } from 'react-toastify';
 
@@ -29,7 +29,7 @@ function Login() {
     if (res.status === 200) {
       localStorage.setItem('token', data.token);
       toast.success("Giriş başarılı!");
-       navigate('/userLayouts/dashboard');
+       navigate('/adminLayouts/dashboard');
       
     } else {
       toast.error("Hatalı giriş!");
