@@ -13,6 +13,7 @@ import CustomerUpdate from "./pages/customerUpdate";
 import AuthPage from "./pages/auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserRegister from "./pages/userRegister";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
   <Route path="/hakkimda" element={<div>Hakkımda sayfası</div>} />
   <Route path="/auth" element={<AuthPage />} />
   <Route path="/customers/update/:id" element={<CustomerUpdate />} />
+  <Route path="/UserRegister" element={<UserRegister />} />
 
 </Route>
 

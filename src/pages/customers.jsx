@@ -27,7 +27,7 @@ export default function Customers() {
       <h1 className="text-2xl font-bold mb-4 text-gray-800">Müşteriler</h1>
       <div className="flex justify-end mb-4">
     <button
-      onClick={() => navigate("/customers/create")}
+      onClick={() => navigate("/userRegister")}
       className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow"
     >
       + Yeni Müşteri Kayıt

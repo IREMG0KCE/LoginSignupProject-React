@@ -50,7 +50,7 @@ export default function CustomerUpdate() {
         <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Telefon" className="w-full p-2 border rounded" />
         <input name="address" value={formData.address} onChange={handleChange} placeholder="Adres" className="w-full p-2 border rounded" />
         <input name="companyName" value={formData.companyName} onChange={handleChange} placeholder="Şirket" className="w-full p-2 border rounded" />
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Kaydet</button>
+        <button type="submit"  className="w-full py-2 bg-gradient-to-r from-gray-900 to-gray-400 text-white rounded-lg hover:from-gray-700 hover:to-blue-300 transition">Güncelle</button>
       </form>
     </div>
   );
