@@ -8,6 +8,9 @@ import Signup from "./components/Signup";
 import NotFoundPage from "./components/NotFoundPage";
 import PublicLayout from "./layouts/PublicLayout";
 import Dashboard from "./adminLayouts/dashboard";
+import Customers from "./pages/customers";
+import CustomerUpdate from "./pages/customerUpdate";
+import AuthPage from "./pages/auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,13 +31,17 @@ function App() {
         </Route>
 
         {/* Private Layout (dashboard) */}
-        <Route element={<Dashboard />}>
-          <Route path="/adminLayouts/dashboard" element={<div>Dashboard ana sayfa</div>} />
-          <Route path="/profil" element={<div>Profil sayfası</div>} />
-          <Route path="/musteri" element={<div>Müşteriler sayfası</div>} />
-          <Route path="/hakkimda" element={<div>Hakkımda sayfası</div>} />
-          <Route path="/ayarlar" element={<div>Ayarlar sayfası</div>} />
-        </Route>
+     {/* Private Layout (dashboard) */}
+<Route element={<Dashboard />}>
+  <Route path="/adminLayouts/dashboard" element={<div>Dashboard ana sayfa</div>} />
+  <Route path="/profil" element={<div>Profil sayfası</div>} />
+  <Route path="/musteriler" element={<Customers />} /> {/* <-- burası */}
+  <Route path="/hakkimda" element={<div>Hakkımda sayfası</div>} />
+  <Route path="/auth" element={<AuthPage />} />
+  <Route path="/customers/update/:id" element={<CustomerUpdate />} />
+
+</Route>
+
 
         {/* 404 */}
         <Route path="*" element={<NotFoundPage />} />

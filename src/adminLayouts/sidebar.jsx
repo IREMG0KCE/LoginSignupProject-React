@@ -43,17 +43,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, linkCls }) => {
         <FontAwesomeIcon icon={faUser} />
         {sidebarOpen && "Profil"}
       </NavLink>
-      <NavLink to="/musteri" className={linkCls}>
-        <FontAwesomeIcon icon={faUsers} />
-        {sidebarOpen && "Müşteriler"}
-      </NavLink>
+      <NavLink to="/musteriler" className={linkCls}>
+  <FontAwesomeIcon icon={faUsers} />
+  {sidebarOpen && "Müşteriler"}
+</NavLink>
+
       <NavLink to="/hakkimda" className={linkCls}>
         <FontAwesomeIcon icon={faInfoCircle} />
         {sidebarOpen && "Hakkımda"}
       </NavLink>
-      <NavLink to="/ayarlar" className={linkCls}>
+      <NavLink to="/auth" className={linkCls}>
         <FontAwesomeIcon icon={faCog} />
-        {sidebarOpen && "Ayarlar"}
+        {sidebarOpen && "Yetkilendirme"}
       </NavLink>
     </aside>
   );
