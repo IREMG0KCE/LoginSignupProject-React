@@ -26,12 +26,11 @@ function Login() {
 
     const data = await res.json();
 
-    if (res.status === 200) {
-      localStorage.setItem('token', data.token);
-      toast.success("Giriş başarılı!");
-       navigate('/adminLayouts/dashboard');
-      
-    } else {
+ if (res.status === 200) {
+  localStorage.setItem('token', data.token);           // token
+  localStorage.setItem('user', JSON.stringify(data.user)); // user bilgisi
+  navigate('/admin/dashboard');                        // admin dashboard’a yönlendir
+} else {
       toast.error("Hatalı giriş!");
     }
   } catch (err) {
@@ -75,7 +74,7 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full py-2 bg-gradient-to-r from-gray-900 to-gray-400 text-white rounded-lg hover:from-gray-700 hover:to-blue-300 transition"
+            className="px-12 py-3 bg-gradient-to-r from-gray-900 to-gray-400 text-white rounded-lg hover:from-gray-700 hover:to-blue-300 transition text-sm mx-auto block"
           >
             {t("Login")}
           </button>

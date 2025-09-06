@@ -22,17 +22,18 @@ const Dashboard = () => {
     }`;
 
   // 🔹 Kullanıcı bilgilerini çek
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
+ useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
 
-    fetch("http://localhost:5000/user/me", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => res.json())
-      .then((data) => setUser(data))
-      .catch((err) => console.error(err));
-  }, []);
+  fetch("http://localhost:5000/user/me", {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((res) => res.json())
+    .then((data) => setUser(data)) // sadece UI (Navbar vs.) için
+    .catch((err) => console.error(err));
+}, []);
+
 
   return (
     <div className="flex min-h-screen">

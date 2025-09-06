@@ -14,7 +14,8 @@ import AuthPage from "./pages/auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserRegister from "./pages/userRegister";
-
+import ProtectedAdminRoute from "./components/AdminRoute";
+import AdminLayout from "./adminLayouts/dashboard";
 function App() {
   return (
     <>
@@ -33,16 +34,16 @@ function App() {
 
         {/* Private Layout (dashboard) */}
      {/* Private Layout (dashboard) */}
-<Route element={<Dashboard />}>
-  <Route path="/adminLayouts/dashboard" element={<div>Dashboard ana sayfa</div>} />
-  <Route path="/profil" element={<div>Profil sayfası</div>} />
-  <Route path="/musteriler" element={<Customers />} /> {/* <-- burası */}
-  <Route path="/hakkimda" element={<div>Hakkımda sayfası</div>} />
-  <Route path="/auth" element={<AuthPage />} />
-  <Route path="/customers/update/:id" element={<CustomerUpdate />} />
-  <Route path="/UserRegister" element={<UserRegister />} />
-
+<Route element={<ProtectedAdminRoute />}>
+  <Route path="/admin/dashboard" element={<AdminLayout />} />
+  <Route path="/admin/profil" element={<div>Profil sayfası</div>} />
+  <Route path="/admin/musteriler" element={<Customers />} />
+  <Route path="/admin/hakkimda" element={<div>Hakkımda sayfası</div>} />
+  <Route path="/admin/auth" element={<AuthPage />} />
+  <Route path="/admin/customers/update/:id" element={<CustomerUpdate />} />
+  <Route path="/admin/userregister" element={<UserRegister />} />
 </Route>
+
 
 
         {/* 404 */}
